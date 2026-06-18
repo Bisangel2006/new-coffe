@@ -1,0 +1,3 @@
+ Activos = a pasivos + la capital 
+ cantidad contable = capital + utilidades rentables
+ utilida retenida = 
