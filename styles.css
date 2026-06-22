@@ -1,0 +1,239 @@
+:root {
+    --cafe-oscuro: #4A3525;
+    --cafe-claro: #8C6239;
+    --crema: #F5EBE6;
+    --blanco: #FFFFFF;
+    --gris-oscuro: #333333;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: var(--crema);
+    color: var(--gris-oscuro);
+}
+
+header {
+    background-color: var(--cafe-oscuro);
+    color: var(--blanco);
+    padding: 1rem;
+    text-align: center;
+}
+
+nav button {
+    background-color: var(--cafe-claro);
+    color: var(--blanco);
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+nav button:hover {
+    background-color: #6F4E37;
+}
+
+main {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background: var(--blanco);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.modulo {
+    display: block;
+}
+
+.oculto {
+    display: none;
+}
+
+form {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    margin-bottom: 20px;
+    background: #fdfdfd;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+input, select, button {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--cafe-claro);
+    color: white;
+}
+
+.card, .balance-container {
+    background: #fafafa;
+    padding: 20px;
+    border-radius: 6px;
+    border-left: 5px solid var(--cafe-claro);
+}
+
+.balance-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.columna {
+    flex: 1;
+}
+
+.historial-item {
+    background: #eaeaea;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modo-lectura-activo {
+    border: 3px solid #e74c3c !important;
+}
+
+.btn-eliminar {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.btn-eliminar:hover {
+    background-color: #c0392b;
+}
+
+/* GRID ESTRUCTURAL PARA LIBRO MAYOR (CUENTAS T) */
+.mayor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.cuenta-t {
+    background: #ffffff;
+    border: 1px solid #b6a396;
+    border-radius: 6px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.cuenta-t h4 {
+    margin: 0 0 10px 0;
+    text-align: center;
+    color: var(--cafe-oscuro);
+    border-bottom: 2px solid var(--cafe-claro);
+    padding-bottom: 5px;
+}
+
+.tabla-t {
+    width: 100%;
+}
+
+.tabla-t th {
+    background-color: #f5ebe6;
+    color: var(--cafe-oscuro);
+    text-align: center;
+    font-size: 12px;
+    padding: 4px;
+}
+
+.tabla-t td {
+    padding: 6px;
+    font-size: 13px;
+    border: none;
+    border-bottom: 1px dashed #eee;
+}
+
+.col-debe {
+    text-align: left;
+    border-right: 1px solid #b6a396 !important;
+    width: 50%;
+}
+
+.col-haber {
+    text-align: right;
+    width: 50%;
+}
+
+.saldo-final-t {
+    margin-top: 10px;
+    padding-top: 5px;
+    border-top: 2px solid var(--cafe-oscuro);
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* SANGRIAS DE CONTABILIDAD PROFESIONAL PARA PAREJAS DEUDOR/ACREEDOR */
+.cuenta-deudora {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 4px;
+}
+
+.cuenta-acreedora {
+    padding-left: 30px !important;
+    color: #555555;
+    font-weight: bold;
+}
+
+.bloque-asiento-diario {
+    border-bottom: 2px dashed #bbb;
+}
+
+/* FORMATO FORMAL DE BALANCE GENERAL */
+.fila-categoria {
+    background-color: #f5ebe6;
+    font-weight: bold;
+    color: var(--cafe-oscuro);
+}
+
+.fila-subcategoria {
+    font-weight: bold;
+    padding-left: 20px !important;
+}
+
+.fila-cuenta-detail td {
+    padding-left: 30px !important;
+}
+
+.fila-total-seccion {
+    font-weight: bold;
+    border-top: 2px solid var(--cafe-oscuro);
+    border-bottom: 2px double var(--cafe-oscuro);
+    background-color: #eaeaea;
+}
+
+.text-derecha {
+    text-align: right !important;
+}

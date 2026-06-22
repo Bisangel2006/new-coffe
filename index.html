@@ -3,18 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minorizado</title>
-    <link rel="stylesheet" href="style.css">
+    <title>New Coffee - Sistema Contable Profesional</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
-<header>
-    <h1>New Coffe</h1>
-</header>
-
 <body>
-<h1>Sarah pndj me la pela!</h1>
-</body>
 
-<footer>
-    <p>Copyright © 2024 New Coffe. All rights reserved.</p>
+    <header>
+        <h1>New Coffee</h1>
+        <div id="indicador-mes" style="color: #ffeb3b; font-weight: bold; margin-bottom: 10px;">Viendo: Mes Actual (En Curso)</div>
+        <nav>
+            <button onclick="cambiarSeccion('ventas')">Módulo Ventas</button>
+            <button onclick="cambiarSeccion('diario')">Libro Diario y Mayor</button>
+            <button onclick="cambiarSeccion('resultados')">Estado de Resultados</button>
+            <button onclick="cambiarSeccion('balance')">Balance General</button>
+            <button onclick="cambiarSeccion('historial')">Historial</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="seccion-ventas" class="modulo">
+            <h2>Registrar Venta Rápida (Cafetería)</h2>
+            <form id="form-venta">
+                <input type="date" id="venta-fecha" required>
+                
+                <select id="venta-producto" required>
+                    <option value="" disabled selected>Seleccione el Tipo de Venta...</option>
+                    <option value="Ventas de Alimentos y Bebidas">Ventas de Alimentos y Bebidas (Café, Pastelería)</option>
+                    <option value="Ventas de Productos de Especialidad">Ventas de Productos de Especialidad (Granos, Souvenirs)</option>
+                    <option value="Otros Ingresos">Otros Ingresos</option>
+                </select>
+
+                <select id="venta-destino" required>
+                    <option value="" disabled selected>¿A dónde entra el dinero? ...</option>
+                    <option value="Caja / Caja Chica">Caja / Caja Chica (Efectivo)</option>
+                    <option value="Bancos">Bancos (Tarjeta / Transferencia)</option>
+                </select>
+
+                <input type="number" id="venta-monto" placeholder="Monto Total ($)" min="0.01" step="0.01" required>
+                <button type="submit" style="background-color: #27ae60; color: white;">Registrar Venta Directa</button>
+            </form>
+
+            <h3>Ventas Directas del Periodo</h3>
+            <table id="tabla-ventas-directas">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Producto / Cuenta de Ingreso</th>
+                        <th>Destino Financiero</th>
+                        <th>Total Ingresado</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <section id="seccion-diario" class="modulo oculto">
+            <h2>Libro Diario / Registro General</h2>
+            <div id="zona-formulario-diario">
+                <p><small>*Nota: Cada asiento exige un Deudor y un Acreedor de forma simultánea para garantizar el equilibrio contable.*</small></p>
+                <form id="form-asiento" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                    <input type="date" id="fecha" required>
+                    <input type="text" id="concepto" placeholder="Ej. Pago de alquiler de local, compra de insumos" required>
+                    
+                    <select id="cuenta-debe" required>
+                        <option value="" disabled selected>--- CUENTA DEUDORA (Cargo / Recibe) ---</option>
+                        <optgroup label="1. Activos (Aumentan)">
+                            <option value="Caja / Caja Chica">Caja / Caja Chica</option>
+                            <option value="Bancos">Bancos</option>
+                            <option value="Inventario de Materia Prima">Inventario de Materia Prima</option>
+                            <option value="Inventario de Desechables y Empaques">Inventario de Desechables y Empaques</option>
+                            <option value="Mobiliario y Equipo">Mobiliario y Equipo</option>
+                            <option value="Equipo de Operación (Maquinaria)">Equipo de Operación (Maquinaria)</option>
+                        </optgroup>
+                        <optgroup label="2. Pasivos (Disminuyen)">
+                            <option value="Proveedores">Proveedores</option>
+                            <option value="Acreedores Diversos">Acreedores Diversos</option>
+                            <option value="Impuestos por Pagar">Impuestos por Pagar</option>
+                            <option value="Préstamos Bancarios">Préstamos Bancarios</option>
+                        </optgroup>
+                        <optgroup label="5. Costos y Gastos (Aumentan)">
+                            <option value="Costo de Materia Prima">Costo de Materia Prima</option>
+                            <option value="Gastos de Personal / Nómina">Gastos de Personal / Nómina</option>
+                            <option value="Arrendamiento / Alquiler">Arrendamiento / Alquiler</option>
+                            <option value="Servicios Públicos (Luz, Agua, Internet)">Servicios Públicos (Luz, Agua, Internet)</option>
+                            <option value="Marketing y Publicidad">Marketing y Publicidad</option>
+                            <option value="Mantenimiento y Reparación">Mantenimiento y Reparación</option>
+                            <option value="Comisiones de Plataformas de Delivery">Comisiones de Plataformas de Delivery</option>
+                        </optgroup>
+                    </select>
+
+                    <select id="cuenta-haber" required>
+                        <option value="" disabled selected>--- CUENTA ACREEDORA (Abono / Entrega) ---</option>
+                        <optgroup label="1. Activos (Disminuyen)">
+                            <option value="Caja / Caja Chica">Caja / Caja Chica</option>
+                            <option value="Bancos">Bancos</option>
+                            <option value="Inventario de Materia Prima">Inventario de Materia Prima</option>
+                            <option value="Inventario de Desechables y Empaques">Inventario de Desechables y Empaques</option>
+                        </optgroup>
+                        <optgroup label="2. Pasivos (Aumentan)">
+                            <option value="Proveedores">Proveedores</option>
+                            <option value="Acreedores Diversos">Acreedores Diversos</option>
+                            <option value="Impuestos por Pagar">Impuestos por Pagar</option>
+                            <option value="Préstamos Bancarios">Préstamos Bancarios</option>
+                        </optgroup>
+                        <optgroup label="3. Capital / Patrimonio (Aumentan)">
+                            <option value="Capital Social">Capital Social</option>
+                            <option value="Utilidades Retenidas / Acumuladas">Utilidades Retenidas / Acumuladas</option>
+                        </optgroup>
+                        <optgroup label="4. Ingresos (Aumentan)">
+                            <option value="Ventas de Alimentos y Bebidas">Ventas de Alimentos y Bebidas</option>
+                            <option value="Ventas de Productos de Especialidad">Ventas de Productos de Especialidad</option>
+                            <option value="Otros Ingresos">Otros Ingresos</option>
+                        </optgroup>
+                    </select>
+
+                    <input type="number" id="monto" placeholder="Monto del Asiento ($)" min="0.01" step="0.01" required>
+                    <button type="submit" style="background-color: #4A3525; color: white; font-weight: bold;">Registrar Asiento (Partida Doble)</button>
+                </form>
+            </div>
+
+            <h3>Registros del Periodo Seleccionado (Libro Diario)</h3>
+            <table id="tabla-diario">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Concepto / Tipo</th>
+                        <th>Cuenta Contable</th>
+                        <th>Debe (+)</th>
+                        <th>Haber (-)</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <h2 style="margin-top: 40px; border-top: 2px solid #4A3525; padding-top: 20px;">Libro Mayor (Cuentas T Automatizadas)</h2>
+            <div id="contenedor-mayor" class="mayor-grid">
+                </div>
+        </section>
+
+        <section id="seccion-resultados" class="modulo oculto">
+            <h2>Estado de Resultados</h2>
+            <div class="card">
+                <p>(+) Ingresos Operativos Totales: <span id="res-ingresos">$0.00</span></p>
+                <p>(-) Costos y Gastos de Operación: <span id="res-gastos">$0.00</span></p>
+                <hr>
+                <h3>Utilidad / Pérdida Neta del Periodo: <span id="res-utilidad">$0.00</span></h3>
+            </div>
+        </section>
+
+        <section id="seccion-balance" class="modulo oculto">
+            <h2>Balance General</h2>
+            
+            <div class="balance-container" style="margin-bottom: 25px;">
+                <div class="columna">
+                    <h3>Activos</h3>
+                    <p>Total Activos Netos: <span id="bal-activos" style="font-weight: bold;">$0.00</span></p>
+                </div>
+                <div class="columna">
+                    <h3>Pasivos y Capital</h3>
+                    <p>Total Pasivos: <span id="bal-pasivos">$0.00</span></p>
+                    <p>Capital Inicial / Social: <span id="bal-capital-inicial">$0.00</span></p>
+                    <p>Resultado del Periodo (Utilidad): 
+                        <span id="bal-resultado-ejercicio" style="font-weight: bold; padding: 4px 8px; border-radius: 4px;">$0.00</span>
+                    </p>
+                    <hr>
+                    <h4>Total Pasivo + Capital: <span id="bal-total-pc" style="font-weight: bold;">$0.00</span></h4>
+                </div>
+            </div>
+
+            <h3>Reporte Detallado de Balance</h3>
+            <div class="card" style="overflow-x: auto;">
+                <table id="tabla-balance-formal">
+                    <thead>
+                        <tr>
+                            <th style="width: 40%;">Cuenta / Concepto</th>
+                            <th style="width: 20%; text-align: right;">Parcial ($)</th>
+                            <th style="width: 20%; text-align: right;">Subtotal ($)</th>
+                            <th style="width: 20%; text-align: right;">Total ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo-balance">
+                        </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="seccion-historial" class="modulo oculto">
+            <h2>Historial y Cierres Mensuales</h2>
+            <div id="zona-cierre-mes" style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <button onclick="cerrarMes()" style="background-color: #c0392b; color: white; padding: 12px; font-size: 16px;">
+                    Cerrar Periodo y Archivar
+                </button>
+                <button onclick="eliminarTodoElSistema()" style="background-color: #7f8c8d; color: white; padding: 12px; font-size: 16px;">
+                    Resetear Todo el Sistema
+                </button>
+            </div>
+            
+            <h3>Consultar Meses Anteriores</h3>
+            <button onclick="volverAlMesActual()" style="margin-bottom: 15px; background-color: #2980b9; color: white;">
+                Volver al Mes Actual (Modo Edición)
+            </button>
+            
+            <div id="lista-historial"></div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
 </html>
